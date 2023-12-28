@@ -28,6 +28,7 @@ public class MainView {
 		Button addWeightClass = new Button("Add weight class");
 		Button showContestants = new Button("Show all contestants");
 		Button showWeightClasses = new Button("Show all weight classes");
+		Button addContestants = new Button("Add contestants to weight class");
 		
 		addContestant.setOnMouseClicked((event) -> {
 			layout.getChildren().clear();
@@ -53,7 +54,8 @@ public class MainView {
 				addContestant, 
 				addWeightClass, 
 				showContestants, 
-				showWeightClasses);
+				showWeightClasses,
+				addContestants);
 		
 		layout.setBottom(versionText);
 		layout.setCenter(menu);;

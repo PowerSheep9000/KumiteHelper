@@ -8,6 +8,7 @@ import java.util.List;
 
 import domain.Contestant;
 import domain.WeightClass;
+import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
