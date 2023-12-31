@@ -5,6 +5,13 @@ import java.util.stream.Collectors;
 import domain.Contestant;
 import domain.Fight;
 import domain.WeightClass;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
+import javafx.scene.layout.BorderPane;
+import ui.MainView;
 
 public class KumiteHelperLogic {
 	private static KumiteHelperLogic INSTANCE;
@@ -73,5 +80,33 @@ public class KumiteHelperLogic {
 		weightClass.setContestantsInClass(toAdd);
 		//TODO: add check if weight class exists
 		// + open category and lowest category
+	}
+	public Parent getContestansinWeightclassView(WeightClass toCreate) {
+		MainView mainView = new MainView();
+
+		BorderPane layout = new BorderPane();
+		BorderPane topHalf = new BorderPane();
+		ListView<String> listView = new ListView<String>();
+		Button backToMainView = new Button("Main view");
+		backToMainView.setOnMouseClicked((event) -> {
+			layout.getChildren().clear();
+			layout.setCenter(mainView.getView());
+		});
+		
+		topHalf.setRight(backToMainView);
+		
+		List<Contestant> contestantsList = toCreate.getContestantsInClass();
+		ObservableList<String> list = FXCollections.observableArrayList();
+		
+		for (Contestant c: contestantsList) {
+			list.add(c.toString());
+		}
+		
+		listView.setItems(list);
+		
+		layout.setTop(topHalf);
+		layout.setCenter(listView);
+
+		return layout;
 	}
 }

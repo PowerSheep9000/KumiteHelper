@@ -4,12 +4,19 @@ import ui.AddContestantView;
 
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import logic.KumiteHelperLogic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import domain.WeightClass;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class MainView {
+	KumiteHelperLogic kumiteHelperLogic = KumiteHelperLogic.getInstance();
 
 	public Parent getView() {
 		AddContestantView addContestantView = new AddContestantView();
@@ -48,6 +55,14 @@ public class MainView {
 		showWeightClasses.setOnMouseClicked((event) -> {
 			layout.getChildren().clear();
 			layout.setCenter(showWeightClassesView.getView());
+		});
+
+		addContestants.setOnMouseClicked((event) -> {
+			List<WeightClass> toAddContestantsTo = kumiteHelperLogic.getAllWeightClasses();
+
+			for (WeightClass w: toAddContestantsTo) {
+				kumiteHelperLogic.addContestantsToWeightClass(w, w.getGenderOfContestants());
+			}
 		});
 		
 		menu.getChildren().addAll(welcomeText, 

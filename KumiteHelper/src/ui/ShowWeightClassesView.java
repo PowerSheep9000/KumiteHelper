@@ -41,13 +41,21 @@ public class ShowWeightClassesView {
 		topHalf.setRight(backToMainView);
 		
 		List<WeightClass> weightClassList = kumiteHelperLogic.getAllWeightClasses();
-		ObservableList<String>  list = FXCollections.observableArrayList();
+		ObservableList<String> list = FXCollections.observableArrayList();
 		
 		for (WeightClass c: weightClassList) {
 			list.add(c.toString());
 		}
 		
 		listView.setItems(list);
+		listView.setOnMouseClicked(event -> {
+			String selection = listView.getSelectionModel().getSelectedItem();
+			String[] parts = selection.split(" ");
+			WeightClass toCreate = kumiteHelperLogic.getWeightClass(Double.valueOf(parts[1]), parts[4].charAt(0));
+
+			layout.getChildren().clear();
+			layout.setCenter(kumiteHelperLogic.getContestansinWeightclassView(toCreate));
+		});
 		
 		layout.setTop(topHalf);
 		layout.setCenter(listView);
