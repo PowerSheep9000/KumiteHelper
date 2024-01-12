@@ -13,9 +13,7 @@ import javafx.scene.control.Button;
 public class Main extends Application {
 
 	public static void main(String[] args) {
-		//GUI ui = new GUI();
-		
-		//ui.start();
+
 		launch(Main.class);
 	}
 	
