@@ -109,4 +109,8 @@ public class KumiteHelperLogic {
 
 		return layout;
 	}
+	public void createFight(WeightClass weightClass, Contestant shiro, Contestant aka) {
+		Fight newFight = new Fight(weightClass, shiro, aka);
+		this.fights.add(newFight);
+	}
 }
